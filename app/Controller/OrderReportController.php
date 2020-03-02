@@ -7,14 +7,21 @@
 
 			$this->loadModel('Order');
 			$orders = $this->Order->find('all',array('conditions'=>array('Order.valid'=>1),'recursive'=>2));
-			// debug($orders);exit;
+			debug($orders[0]['OrderDetail'][0]['order_id']);
+			debug($orders[0]['OrderDetail'][0]['item_id']);
+			debug($orders[0]['OrderDetail'][0]['quantity']);
+			
+			// debug($orders);
+			// exit;
 
 			$this->loadModel('Portion');
 			$portions = $this->Portion->find('all',array('conditions'=>array('Portion.valid'=>1),'recursive'=>2));
-			// debug($portions);exit;
+			debug($portions);
+			// exit;
 
 
 			// To Do - write your own array in this format
+			// $orders[0]['id']
 			$order_reports = array('Order 1' => array(
 										'Ingredient A' => 1,
 										'Ingredient B' => 12,

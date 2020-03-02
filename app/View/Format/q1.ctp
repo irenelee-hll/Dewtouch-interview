@@ -10,9 +10,15 @@
 <br><br>
 
 <?php $options_new = array(
- 		'Type1' => __('<span class="showDialog" data-id="dialog_1" style="color:blue">Type1</span><div id="dialog_1" class="hide dialog" title="Type 1">
- 				<span style="display:inline-block"><ul><li>Description .......</li>
- 				<li>Description 2</li></ul></span>
+ 		'Type1' => __(
+			 '<span class="showDialog" data-id="dialog_1" style="color:blue">Type1</span>
+			 <div id="dialog_1" class="hide dialog" title="Type 1">
+				 <span style="display:inline-block">
+				 <ul>
+				 <li>Description .......</li>
+				 <li>Description 2</li>
+				 </ul>
+				 </span>
  				</div>'),
 		'Type2' => __('<span class="showDialog" data-id="dialog_2" style="color:blue">Type2</span><div id="dialog_2" class="hide dialog" title="Type 2">
  				<span style="display:inline-block"><ul><li>Desc 1 .....</li>
@@ -20,7 +26,10 @@
  				</div>')
 		);?>
 
-<?php echo $this->Form->input('type', array('legend'=>false, 'type' => 'radio', 'options'=>$options_new,'before'=>'<label class="radio line notcheck">','after'=>'</label>' ,'separator'=>'</label><label class="radio line notcheck">'));?>
+<?php echo $this->Form->input('type', array(
+	'legend'=>false, 'type' => 'radio', 
+	'options'=>$options_new,
+	'before'=>'<label class="radio line notcheck">','after'=>'</label>' ,'separator'=>'</label><label class="radio line notcheck">'));?>
 
 
 <?php echo $this->Form->end();?>
@@ -51,18 +60,21 @@
 <script>
 
 $(document).ready(function(){
-	$(".dialog").dialog({
-		autoOpen: false,
-		width: '500px',
-		modal: true,
-		dialogClass: 'ui-dialog-blue'
-	});
+	// $(".dialog").dialog({
+	// 	autoOpen: false,
+	// 	width: '500px',
+	// 	modal: true,
+	// 	dialogClass: 'ui-dialog-blue'
+	// });
 
-	
-	$(".showDialog").click(function(){ var id = $(this).data('id'); $("#"+id).dialog('open'); });
-
-})
-
-
+	$(".showDialog").hover(function(e){
+		$(this).siblings(".dialog").css({display:"block"}).hide().fadeIn(300);
+		}, 
+		function(e) { 
+		$(this).siblings(".dialog").css({display:"none"});
+		e.preventDefault();
+		}
+	);
+});
 </script>
 <?php $this->end()?>
